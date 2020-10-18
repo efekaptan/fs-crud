@@ -1,0 +1,18 @@
+{
+  "name": "fs-crud",
+  "version": "1.0.0",
+  "description": "Fullstack crud generator",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --exec babel-node index"
+  },
+  "author": "Efe Kaptan",
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/node": "^7.12.1",
+    "@babel/preset-env": "^7.12.1",
+    "handlebars": "^4.7.6",
+    "nodemon": "^2.0.5",
+    "pluralize": "^8.0.0"
+  }
+}

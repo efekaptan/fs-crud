@@ -1,0 +1,32 @@
+{
+    "entities": [
+        {
+            "name": "Customer",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "number",
+                    "isPrimary": true
+                },
+                {
+                    "name": "title",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "Order",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "number",
+                    "isPrimary": true
+                },
+                {
+                    "name": "title",
+                    "type": "string"
+                }
+            ]
+        }
+    ]
+}
