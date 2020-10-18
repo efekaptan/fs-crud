@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Create{{name}}Dto } from './dtos/create-{{lower name}}.dto';
-import { Search{{name}}Dto } from './dtos/search-{{lower name}}.dto';
-import { {{name}} } from './{{lower name}}.entity';
+import { Create{{name}}Dto } from './dto/create-{{lower name}}.dto';
+import { Search{{name}}Dto } from './dto/search-{{lower name}}.dto';
+import { {{name}} } from './entity/{{lower name}}.entity';
 
 @Injectable()
 export class {{plural name}}Service {

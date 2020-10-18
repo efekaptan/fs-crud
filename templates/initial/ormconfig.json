@@ -1,0 +1,16 @@
+[
+    {
+        "type": "sqlite",
+        "database": "db.sqlite",
+        "autoLoadEntities": true,
+        "synchronize": true,
+        "migrationsRun": true,
+        "logging": true,
+        "entities": [
+            "dist/**/*.entity{.ts,.js}"
+        ],
+        "migrations": [
+            "dist/migrations/*{.ts,.js}"
+        ]
+    }
+]

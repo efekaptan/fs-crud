@@ -7,7 +7,9 @@ export class {{name}} {
     {{#if isPrimary}}
     @PrimaryGeneratedColumn()
     {{/if}}
+    {{#unless isPrimary}}
     @Column()
+    {{/unless}}
     @ApiProperty()
     {{name}} : {{type}}
 

@@ -1,8 +1,8 @@
 import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 import { ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { Create{{name}}Dto } from './dtos/create-{{lower name}}.dto';
-import { Search{{name}}Dto } from './dtos/search-{{lower name}}.dto';
-import { {{name}} } from './entities/{{lower name}}.entity';
+import { Create{{name}}Dto } from './dto/create-{{lower name}}.dto';
+import { Search{{name}}Dto } from './dto/search-{{lower name}}.dto';
+import { {{name}} } from './entity/{{lower name}}.entity';
 import { {{plural name}}Service } from './{{pluralLower name}}.service';
 
 @Controller('{{plural name}}')
