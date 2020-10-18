@@ -11,6 +11,10 @@
                 {
                     "name": "title",
                     "type": "string"
+                },
+                {
+                    "name": "created",
+                    "type": "Date"
                 }
             ]
         },

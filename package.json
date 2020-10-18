@@ -5,6 +5,7 @@
   "main": "dist/main",
   "scripts": {
     "start": "node dist/main",
+    "start:dev": "nodemon --watch ./lib --exec babel-node ./lib/main.js",
     "transpile": "babel ./lib --out-dir dist"
   },
   "author": "Efe Kaptan",
@@ -13,8 +14,13 @@
     "@babel/core": "^7.12.3",
     "@babel/node": "^7.12.1",
     "@babel/preset-env": "^7.12.1",
+    "commander": "^6.1.0",
     "fs-extra": "^9.0.1",
     "handlebars": "^4.7.6",
+    "nodemon": "^2.0.5",
     "pluralize": "^8.0.0"
+  },
+  "bin": {
+    "fs-crud": "dist/main.js"
   }
 }
