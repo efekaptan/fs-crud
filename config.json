@@ -1,4 +1,6 @@
 {
+    "name": "sample-app",
+    "installPackages": false,
     "entities": [
         {
             "name": "Customer",
