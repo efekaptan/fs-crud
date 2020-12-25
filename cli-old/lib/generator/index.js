@@ -1,4 +1,4 @@
-import generateServer from './server';
+import generateServer from './server/nest';
 import { readJson, createFolder } from '../file';
 
 export function generate(configPath) {

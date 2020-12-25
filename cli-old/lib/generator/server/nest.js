@@ -1,9 +1,9 @@
 import pluralize from 'pluralize';
-import { render } from '../template';
-import { createFile, createFolder, getFiles, copy } from '../file';
+import { render } from '../../template';
+import { createFile, createFolder, getFiles, copy } from '../../file';
 import { spawn } from 'child_process';
 
-const TEMPLATE_PATH = `${__dirname}/../../templates/server`;
+const TEMPLATE_PATH = `${__dirname}/../../templates/server/nest`;
 
 export default function generate(config) {
     const { name, installPackages } = config;
@@ -17,8 +17,8 @@ export default function generate(config) {
     }
 }
 
-function copyInitial(name) {
-    copy(`${TEMPLATE_PATH}/initial`, name);
+function copyInitial(path) {
+    copy(`${TEMPLATE_PATH}/initial`, path);
 }
 
 function createEntities(path, config) {
