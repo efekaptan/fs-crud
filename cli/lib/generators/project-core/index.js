@@ -1,3 +1,8 @@
+import { createFolder } from '../../util/file';
+
 export default function generate(config) {
-    console.log('project-core generator started : ', config);
+    console.log('project-core generator started');
+    const { directory } = config;
+    console.log('creating project directory : ', directory);
+    createFolder(directory);
 }
