@@ -11,14 +11,13 @@ export default function generate(config) {
 
 function createEntities(config) {
     const { serverPackageName, entities, packageFolder } = config;
-    createFolder(join(packageFolder, 'pojo'));
-    createFolder(join(packageFolder, 'repository'));
-    createFolder(join(packageFolder, 'service'));
+    createMainFolders(['pojo', 'repository', 'service', 'input'], packageFolder);
 
     entities.forEach((entity) => {
         createEntity(entity, serverPackageName, packageFolder);
         createRepository(entity, serverPackageName, packageFolder);
         createService(entity, serverPackageName, packageFolder);
+        createInput(entity, serverPackageName, packageFolder);
     });
 }
 
@@ -45,9 +44,23 @@ function createRepository(entity, serverPackageName, packageFolder) {
 function createService(entity, serverPackageName, packageFolder) {
     const templateDirectory = join(__dirname, 'template');
     const { name } = entity;
-    const repositoryFile = render(join(templateDirectory, 'service/service.java'), {
+    const serviceFile = render(join(templateDirectory, 'service/service.java'), {
         serverPackageName,
         ...entity
     });
-    createFile(join(packageFolder, `service/${name}Service.java`), repositoryFile);
+    createFile(join(packageFolder, `service/${name}Service.java`), serviceFile);
+}
+
+function createInput(entity, serverPackageName, packageFolder) {
+    const templateDirectory = join(__dirname, 'template');
+    const { name } = entity;
+    const inputFile = render(join(templateDirectory, 'input/input.java'), {
+        serverPackageName,
+        ...entity
+    });
+    createFile(join(packageFolder, `input/${name}Input.java`), inputFile);
+}
+
+function createMainFolders(folders, packageFolder) {
+    folders.forEach((folder) => createFolder(join(packageFolder, folder)));
 }
