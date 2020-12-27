@@ -12,9 +12,11 @@ export default function generate(config) {
 function createEntities(config) {
     const { serverPackageName, entities, packageFolder } = config;
     createFolder(join(packageFolder, 'pojo'));
+    createFolder(join(packageFolder, 'repository'));
 
     entities.forEach((entity) => {
         createEntity(entity, serverPackageName, packageFolder);
+        createRepository(entity, serverPackageName, packageFolder);
     });
 }
 
@@ -26,4 +28,14 @@ function createEntity(entity, serverPackageName, packageFolder) {
         ...entity
     });
     createFile(join(packageFolder, `pojo/${name}.java`), entityFile);
+}
+
+function createRepository(entity, serverPackageName, packageFolder) {
+    const templateDirectory = join(__dirname, 'template');
+    const { name } = entity;
+    const repositoryFile = render(join(templateDirectory, 'repository/repository.java'), {
+        serverPackageName,
+        ...entity
+    });
+    createFile(join(packageFolder, `repository/${name}Repository.java`), repositoryFile);
 }

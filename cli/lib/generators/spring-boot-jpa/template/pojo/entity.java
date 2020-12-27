@@ -1,4 +1,4 @@
-package {{serverPackageName}};
+package {{serverPackageName}}.pojo;
 
 import lombok.Data;
 
