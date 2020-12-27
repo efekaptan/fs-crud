@@ -8,12 +8,12 @@
             "columns": [
                 {
                     "name": "id",
-                    "type": "number",
+                    "type": "Integer",
                     "isPrimary": true
                 },
                 {
                     "name": "title",
-                    "type": "string"
+                    "type": "String"
                 },
                 {
                     "name": "created",
@@ -26,12 +26,12 @@
             "columns": [
                 {
                     "name": "id",
-                    "type": "number",
+                    "type": "Integer",
                     "isPrimary": true
                 },
                 {
                     "name": "title",
-                    "type": "string"
+                    "type": "String"
                 }
             ]
         }
