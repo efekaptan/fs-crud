@@ -1,5 +1,6 @@
 {
     "name": "sample-app",
+    "serverPackageName": "com.example.sampleapp",
     "installPackages": false,
     "entities": [
         {
