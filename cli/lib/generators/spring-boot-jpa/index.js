@@ -13,10 +13,12 @@ function createEntities(config) {
     const { serverPackageName, entities, packageFolder } = config;
     createFolder(join(packageFolder, 'pojo'));
     createFolder(join(packageFolder, 'repository'));
+    createFolder(join(packageFolder, 'service'));
 
     entities.forEach((entity) => {
         createEntity(entity, serverPackageName, packageFolder);
         createRepository(entity, serverPackageName, packageFolder);
+        createService(entity, serverPackageName, packageFolder);
     });
 }
 
@@ -38,4 +40,14 @@ function createRepository(entity, serverPackageName, packageFolder) {
         ...entity
     });
     createFile(join(packageFolder, `repository/${name}Repository.java`), repositoryFile);
+}
+
+function createService(entity, serverPackageName, packageFolder) {
+    const templateDirectory = join(__dirname, 'template');
+    const { name } = entity;
+    const repositoryFile = render(join(templateDirectory, 'service/service.java'), {
+        serverPackageName,
+        ...entity
+    });
+    createFile(join(packageFolder, `service/${name}Service.java`), repositoryFile);
 }
