@@ -1,16 +1,17 @@
-import { createFolder, copy } from '../../util/file';
+import { createFile, createFolder, copy } from '../../util/file';
 import { join } from 'path';
+import { render } from '../../util/template';
 
 export default function generate(config) {
     console.log('spring-boot-core generator started');
-    const { name, serverPackageName, directory } = config;
+    const { serverPackageName, directory } = config;
     const serverDirectory = join(directory, 'server');
     const templateDirectory = join(__dirname, 'template');
 
     createServerFolder(serverDirectory);
     copyBaseFolder(serverDirectory, templateDirectory);
     const packageFolder = createPackageFolder(serverDirectory, serverPackageName);
-    console.log(packageFolder);
+    createApplicationFile(templateDirectory, packageFolder, config);
 }
 
 function createServerFolder(serverDirectory) {
@@ -18,6 +19,7 @@ function createServerFolder(serverDirectory) {
 }
 
 function copyBaseFolder(serverDirectory, templateDirectory) {
+    createFolder(join(templateDirectory, 'base/src/main/java'));
     copy(join(templateDirectory, 'base'), serverDirectory);
 }
 
@@ -32,4 +34,9 @@ function createPackageFolder(serverDirectory, serverPackageName) {
     }, packageFolder);
 
     return packageFolder;
+}
+
+function createApplicationFile(templateDirectory, packageFolder, config) {
+    const applicationFile = render(join(templateDirectory, 'application/application.java'), config);
+    createFile(join(packageFolder, 'application.java'), applicationFile);
 }
