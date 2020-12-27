@@ -13,52 +13,38 @@ function createEntities(config) {
     const { serverPackageName, entities, packageFolder } = config;
     createMainFolders(['pojo', 'repository', 'service', 'input'], packageFolder);
 
+    const entityConfiguration = [
+        {
+            templateFileName: 'pojo/entity.java',
+            outputFileName: (name) => `pojo/${name}.java`
+        }, {
+            templateFileName: 'repository/repository.java',
+            outputFileName: (name) => `repository/${name}Repository.java`
+        }, {
+            templateFileName: 'service/service.java',
+            outputFileName: (name) => `service/${name}Service.java`
+        }, {
+            templateFileName: 'input/input.java',
+            outputFileName: (name) => `input/${name}Input.java`
+        }
+    ]
+
     entities.forEach((entity) => {
-        createEntity(entity, serverPackageName, packageFolder);
-        createRepository(entity, serverPackageName, packageFolder);
-        createService(entity, serverPackageName, packageFolder);
-        createInput(entity, serverPackageName, packageFolder);
+        entityConfiguration.forEach((configuration) => {
+            const { name } = entity;
+            const { templateFileName, outputFileName } = configuration;
+            createEntity(entity, serverPackageName, packageFolder, templateFileName, outputFileName(name));
+        })
     });
 }
 
-function createEntity(entity, serverPackageName, packageFolder) {
+function createEntity(entity, serverPackageName, packageFolder, templateFileName, outputFileName) {
     const templateDirectory = join(__dirname, 'template');
-    const { name } = entity;
-    const entityFile = render(join(templateDirectory, 'pojo/entity.java'), {
+    const entityFile = render(join(templateDirectory, templateFileName), {
         serverPackageName,
         ...entity
     });
-    createFile(join(packageFolder, `pojo/${name}.java`), entityFile);
-}
-
-function createRepository(entity, serverPackageName, packageFolder) {
-    const templateDirectory = join(__dirname, 'template');
-    const { name } = entity;
-    const repositoryFile = render(join(templateDirectory, 'repository/repository.java'), {
-        serverPackageName,
-        ...entity
-    });
-    createFile(join(packageFolder, `repository/${name}Repository.java`), repositoryFile);
-}
-
-function createService(entity, serverPackageName, packageFolder) {
-    const templateDirectory = join(__dirname, 'template');
-    const { name } = entity;
-    const serviceFile = render(join(templateDirectory, 'service/service.java'), {
-        serverPackageName,
-        ...entity
-    });
-    createFile(join(packageFolder, `service/${name}Service.java`), serviceFile);
-}
-
-function createInput(entity, serverPackageName, packageFolder) {
-    const templateDirectory = join(__dirname, 'template');
-    const { name } = entity;
-    const inputFile = render(join(templateDirectory, 'input/input.java'), {
-        serverPackageName,
-        ...entity
-    });
-    createFile(join(packageFolder, `input/${name}Input.java`), inputFile);
+    createFile(join(packageFolder, outputFileName), entityFile);
 }
 
 function createMainFolders(folders, packageFolder) {
