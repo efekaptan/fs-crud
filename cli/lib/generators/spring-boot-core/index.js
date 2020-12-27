@@ -12,6 +12,11 @@ export default function generate(config) {
     copyBaseFolder(serverDirectory, templateDirectory);
     const packageFolder = createPackageFolder(serverDirectory, serverPackageName);
     createApplicationFile(templateDirectory, packageFolder, config);
+
+    return {
+        ...config,
+        packageFolder
+    }
 }
 
 function createServerFolder(serverDirectory) {

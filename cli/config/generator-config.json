@@ -1,4 +1,5 @@
 [
     "project-core",
-    "spring-boot-core"
+    "spring-boot-core",
+    "spring-boot-jpa"
 ]
