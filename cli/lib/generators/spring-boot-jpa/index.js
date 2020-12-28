@@ -21,7 +21,7 @@ function getEntityConfiguration() {
             outputFileName: (name) => `service/${name}Service.java`
         }, {
             templateFileName: 'input/input.java',
-            outputFileName: (name) => `input/${name}Input.java`
+            outputFileName: (name) => `input/Add${name}Input.java`
         }
     ]
 }

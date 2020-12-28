@@ -1,8 +1,8 @@
 package {{serverPackageName}}.service;
 
-import com.example.graphqldemo.pojo.{{name}};
-import com.example.graphqldemo.repository.{{name}}Repository;
-import com.example.graphqldemo.types.Add{{name}}Input;
+import {{serverPackageName}}.pojo.{{name}};
+import {{serverPackageName}}.repository.{{name}}Repository;
+import {{serverPackageName}}.input.Add{{name}}Input;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +16,7 @@ public class {{name}}Service {
         
         {{#each columns}}
         {{#unless isPrimary}}
-        {{lower ../name}}.set{{firstUpper name}}(addCityInput.get{{firstUpper name}}());
+        {{lower ../name}}.set{{firstUpper name}}(add{{../name}}Input.get{{firstUpper name}}());
         {{/unless}}
         {{/each}}
         

@@ -42,6 +42,7 @@ function createPackageFolder(serverDirectory, serverPackageName) {
 }
 
 function createApplicationFile(templateDirectory, packageFolder, config) {
+    const { applicationName } = config;
     const applicationFile = render(join(templateDirectory, 'application/application.java'), config);
-    createFile(join(packageFolder, 'application.java'), applicationFile);
+    createFile(join(packageFolder, `${applicationName}Application.java`), applicationFile);
 }

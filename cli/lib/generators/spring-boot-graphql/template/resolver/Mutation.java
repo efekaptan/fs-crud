@@ -2,13 +2,13 @@ package {{serverPackageName}}.resolver;
 
 import com.coxautodev.graphql.tools.GraphQLMutationResolver;
 {{#each entities}}
-import com.example.graphqldemo.pojo.{{name}};
+import {{../serverPackageName}}.pojo.{{name}};
 {{/each}}
 {{#each entities}}
-import com.example.graphqldemo.service.{{name}}Service;
+import {{../serverPackageName}}.service.{{name}}Service;
 {{/each}}
 {{#each entities}}
-import com.example.graphqldemo.input.Add{{name}}Input;
+import {{../serverPackageName}}.input.Add{{name}}Input;
 {{/each}}
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

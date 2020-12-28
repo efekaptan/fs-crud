@@ -2,10 +2,10 @@ package {{serverPackageName}}.resolver;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 {{#each entities}}
-import com.example.graphqldemo.pojo.{{name}};
+import {{../serverPackageName}}.pojo.{{name}};
 {{/each}}
 {{#each entities}}
-import com.example.graphqldemo.repository.{{name}}Repository;
+import {{../serverPackageName}}.repository.{{name}}Repository;
 {{/each}}
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
