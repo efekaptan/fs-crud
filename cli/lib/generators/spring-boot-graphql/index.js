@@ -5,6 +5,7 @@ import { render } from '../../util/template';
 export default function generate(config) {
     console.log('spring-boot-graphql generator started');
     createResources(config);
+    createResolvers(config);
     return config;
 }
 
@@ -23,4 +24,28 @@ function createGraphqlFile(entity, graphqlDirectory) {
     const templateDirectory = join(__dirname, 'template');
     const graphqlFile = render(join(templateDirectory, 'resources/entity.graphqls'), entity);
     createFile(join(graphqlDirectory, `${name}.graphqls`), graphqlFile);
+}
+
+function getResolvers() {
+    return ['Mutation', 'Query'];
+}
+
+function createResolvers(config) {
+    const { packageFolder } = config;
+    const resolverFolder = join(packageFolder, 'resolver');
+    createFolder(resolverFolder);
+
+    const templateDirectory = join(__dirname, 'template');
+
+    const resolvers = getResolvers();
+    resolvers.forEach((resolver) => {
+        const templateFile = join(templateDirectory, `resolver/${resolver}.java`);
+        const outputFile = join(resolverFolder, `${resolver}.java`);
+        createResolverFile(config, templateFile, outputFile)
+    });
+}
+
+function createResolverFile(config, templateFile, outputFile) {
+    const resolverFile = render(templateFile, config);
+    createFile(outputFile, resolverFile);
 }
