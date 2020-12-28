@@ -10,8 +10,10 @@ export default function generate(config) {
 
     createServerFolder(serverDirectory);
     copyBaseFolder(serverDirectory, templateDirectory);
+    createPomFile(templateDirectory, serverDirectory, config);
     const packageFolder = createPackageFolder(serverDirectory, serverPackageName);
     createApplicationFile(templateDirectory, packageFolder, config);
+    createConfig(templateDirectory, packageFolder, config);
 
     return {
         ...config,
@@ -45,4 +47,16 @@ function createApplicationFile(templateDirectory, packageFolder, config) {
     const { applicationName } = config;
     const applicationFile = render(join(templateDirectory, 'application/application.java'), config);
     createFile(join(packageFolder, `${applicationName}Application.java`), applicationFile);
+}
+
+function createPomFile(templateDirectory, serverDirectory, config) {
+    const pomFile = render(join(templateDirectory, 'base/pom.xml'), config);
+    createFile(join(serverDirectory, `pom.xml`), pomFile);
+}
+
+function createConfig(templateDirectory, packageFolder, config) {
+    const configFilePath = 'config/DateScalarConfiguration.java';
+    createFolder(join(packageFolder, 'config'));
+    const configFile = render(join(templateDirectory, configFilePath), config);
+    createFile(join(packageFolder, configFilePath), configFile);
 }

@@ -6,7 +6,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.util.*;
+
+{{#if (hasDate columns)}}
+import java.time.LocalDateTime;
+{{/if}}
 
 @Entity
 @Data
@@ -20,6 +23,6 @@ public class {{name}} {
     
     @Column
     {{/unless}}
-    private {{type}} {{name}};
+    private {{javaType type}} {{name}};
     {{/each}}
 }

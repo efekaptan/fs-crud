@@ -17,7 +17,7 @@ extend type Mutation {
     new{{name}} (input: Add{{name}}Input!): {{name}}!
 }
 
-input AddCityInput {
+input Add{{name}}Input {
     {{#each columns}}
     {{#unless isPrimary}}
     {{name}}: {{type}}{{#if isRequired}}!{{/if}}

@@ -1,4 +1,4 @@
-import { createFile, createFolder } from "../../util/file";
+import { copy, createFile, createFolder } from "../../util/file";
 import { join } from 'path';
 import { render } from '../../util/template';
 
@@ -17,13 +17,14 @@ function createResources(config) {
     entities.forEach((entity) => {
         createGraphqlFile(entity, graphqlDirectory);
     });
+    createSchemaFile(graphqlDirectory);
 }
 
 function createGraphqlFile(entity, graphqlDirectory) {
     const { name } = entity;
     const templateDirectory = join(__dirname, 'template');
     const graphqlFile = render(join(templateDirectory, 'resources/entity.graphqls'), entity);
-    createFile(join(graphqlDirectory, `${name}.graphqls`), graphqlFile);
+    createFile(join(graphqlDirectory, `${name.toLowerCase()}.graphqls`), graphqlFile);
 }
 
 function getResolvers() {
@@ -48,4 +49,9 @@ function createResolvers(config) {
 function createResolverFile(config, templateFile, outputFile) {
     const resolverFile = render(templateFile, config);
     createFile(outputFile, resolverFile);
+}
+
+function createSchemaFile(graphqlDirectory) {
+    const schemaFile = join(__dirname, 'template/resources/schema.graphqls');
+    copy(schemaFile, join(graphqlDirectory, 'schema.graphqls'));
 }

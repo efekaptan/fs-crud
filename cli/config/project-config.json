@@ -23,7 +23,7 @@
             ]
         },
         {
-            "name": "Order",
+            "name": "City",
             "columns": [
                 {
                     "name": "id",
