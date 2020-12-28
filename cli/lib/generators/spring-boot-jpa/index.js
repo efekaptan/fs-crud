@@ -4,16 +4,12 @@ import { render } from '../../util/template';
 
 export default function generate(config) {
     console.log('spring-boot-jpa generator started');
-    console.log(config);
     createEntities(config);
     return config;
 }
 
-function createEntities(config) {
-    const { serverPackageName, entities, packageFolder } = config;
-    createMainFolders(['pojo', 'repository', 'service', 'input'], packageFolder);
-
-    const entityConfiguration = [
+function getEntityConfiguration() {
+    return [
         {
             templateFileName: 'pojo/entity.java',
             outputFileName: (name) => `pojo/${name}.java`
@@ -28,6 +24,13 @@ function createEntities(config) {
             outputFileName: (name) => `input/${name}Input.java`
         }
     ]
+}
+
+function createEntities(config) {
+    const { serverPackageName, entities, packageFolder } = config;
+    createMainFolders(['pojo', 'repository', 'service', 'input'], packageFolder);
+
+    const entityConfiguration = getEntityConfiguration();
 
     entities.forEach((entity) => {
         entityConfiguration.forEach((configuration) => {

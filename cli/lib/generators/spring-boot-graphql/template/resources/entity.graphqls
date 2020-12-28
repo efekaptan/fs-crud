@@ -1,0 +1,26 @@
+type {{name}} {
+    {{#each columns}}
+    {{#if isPrimary}}
+    {{name}}: ID!
+    {{/if}}
+    {{#unless isPrimary}}
+    {{name}}: {{type}}{{#if isRequired}}!{{/if}}
+    {{/unless}}
+    {{/each}}
+}
+
+extend type Query {
+    get{{plural name}}: [{{name}}]!
+}
+
+extend type Mutation {
+    new{{name}} (input: Add{{name}}Input!): {{name}}!
+}
+
+input AddCityInput {
+    {{#each columns}}
+    {{#unless isPrimary}}
+    {{name}}: {{type}}{{#if isRequired}}!{{/if}}
+    {{/unless}}
+    {{/each}}
+}

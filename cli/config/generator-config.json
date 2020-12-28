@@ -1,5 +1,6 @@
 [
     "project-core",
     "spring-boot-core",
-    "spring-boot-jpa"
+    "spring-boot-jpa",
+    "spring-boot-graphql"
 ]
