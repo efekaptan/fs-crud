@@ -21,6 +21,9 @@ Handlebars.registerHelper('firstUpper', function (input) {
 
 Handlebars.registerHelper('javaType', function (input) {
     switch (input) {
+        case 'ID':
+        case 'Int':
+            return 'int';
         case 'Date':
             return 'LocalDateTime';
         default:
@@ -30,6 +33,34 @@ Handlebars.registerHelper('javaType', function (input) {
 
 Handlebars.registerHelper('hasDate', function (columns) {
     return columns.some((column) => column.type === 'Date');
+});
+
+Handlebars.registerHelper('ifCond', function (v1, operator, v2, options) {
+
+    switch (operator) {
+        case '==':
+            return (v1 == v2) ? options.fn(this) : options.inverse(this);
+        case '===':
+            return (v1 === v2) ? options.fn(this) : options.inverse(this);
+        case '!=':
+            return (v1 != v2) ? options.fn(this) : options.inverse(this);
+        case '!==':
+            return (v1 !== v2) ? options.fn(this) : options.inverse(this);
+        case '<':
+            return (v1 < v2) ? options.fn(this) : options.inverse(this);
+        case '<=':
+            return (v1 <= v2) ? options.fn(this) : options.inverse(this);
+        case '>':
+            return (v1 > v2) ? options.fn(this) : options.inverse(this);
+        case '>=':
+            return (v1 >= v2) ? options.fn(this) : options.inverse(this);
+        case '&&':
+            return (v1 && v2) ? options.fn(this) : options.inverse(this);
+        case '||':
+            return (v1 || v2) ? options.fn(this) : options.inverse(this);
+        default:
+            return options.inverse(this);
+    }
 });
 
 export function render(path, data) {

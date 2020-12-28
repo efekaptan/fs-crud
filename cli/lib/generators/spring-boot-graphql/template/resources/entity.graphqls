@@ -19,8 +19,13 @@ extend type Mutation {
 
 input Add{{name}}Input {
     {{#each columns}}
+    {{#if hasForeignKey}}
+    {{joinColumn}}: {{refType}}{{#if isRequired}}!{{/if}}
+    {{/if}}
+    {{#unless hasForeignKey}}
     {{#unless isPrimary}}
     {{name}}: {{type}}{{#if isRequired}}!{{/if}}
+    {{/unless}}
     {{/unless}}
     {{/each}}
 }

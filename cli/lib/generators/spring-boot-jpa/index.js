@@ -37,7 +37,7 @@ function createEntities(config) {
             const { name } = entity;
             const { templateFileName, outputFileName } = configuration;
             createEntity(entity, serverPackageName, packageFolder, templateFileName, outputFileName(name));
-        })
+        });
     });
 }
 

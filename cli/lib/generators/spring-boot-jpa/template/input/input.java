@@ -8,8 +8,13 @@ import java.time.LocalDateTime;
 @Data
 public class Add{{name}}Input {
     {{#each columns}}
+    {{#if hasForeignKey}}
+    private {{javaType refType}} {{joinColumn}};
+    {{/if}}
+    {{#unless hasForeignKey}}
     {{#unless isPrimary}}
     private {{javaType type}} {{name}};
+    {{/unless}}
     {{/unless}}
     {{/each}}
 }

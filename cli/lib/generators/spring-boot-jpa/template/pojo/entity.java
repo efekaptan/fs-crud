@@ -2,10 +2,7 @@ package {{serverPackageName}}.pojo;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 {{#if (hasDate columns)}}
 import java.time.LocalDateTime;
@@ -21,7 +18,13 @@ public class {{name}} {
     {{/if}}
     {{#unless isPrimary}}
     
+    {{#if hasForeignKey}}
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "{{joinColumn}}", nullable = false)
+    {{/if}}
+    {{#unless hasForeignKey}}
     @Column
+    {{/unless}}
     {{/unless}}
     private {{javaType type}} {{name}};
     {{/each}}

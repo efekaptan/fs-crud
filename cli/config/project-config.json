@@ -8,7 +8,7 @@
             "columns": [
                 {
                     "name": "id",
-                    "type": "Integer",
+                    "type": "ID",
                     "isPrimary": true
                 },
                 {
@@ -19,6 +19,15 @@
                 {
                     "name": "created",
                     "type": "Date"
+                },
+                {
+                    "name": "city",
+                    "hasForeignKey": true,
+                    "type": "City",
+                    "joinColumn": "cityId",
+                    "field": "id",
+                    "joinType": "ManyToOne",
+                    "refType": "Int"
                 }
             ]
         },
@@ -27,7 +36,7 @@
             "columns": [
                 {
                     "name": "id",
-                    "type": "Integer",
+                    "type": "ID",
                     "isPrimary": true
                 },
                 {
